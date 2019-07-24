@@ -1,11 +1,13 @@
 package com.tomaszkyc.app.main;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.Enumeration;
+import java.util.List;
 
 import com.beust.jcommander.JCommander;
+import com.beust.jcommander.JCommander.Builder;
 import com.beust.jcommander.Parameter;
+import com.tomaszkyc.app.args.ArgParameter;
+import com.tomaszkyc.app.args.ArgParameterFactory;
 import com.tomaszkyc.app.files.FileRepository;
 import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
@@ -15,27 +17,34 @@ public class Main {
 	@Parameter(names = "-password", description = "Connection password", password = true, echoInput = false)
 	private String password;
 
-	private static Logger log;
+	private static Logger log = new ConsoleLogger();
 	
-	private FileRepository fileRepository;
+	private static FileRepository fileRepository = new FileRepository();
 
 	public static void main(String[] args) throws IOException {
 
-		Main main = new Main();
-
-		JCommander.newBuilder().addObject(main).build().parse(args);
-
-		log = new ConsoleLogger();
-
-		main.run();
+		Builder builder = JCommander.newBuilder();
+		buildParameterList( builder );
+		
+		JCommander jcommander = builder.build();
+		jcommander.usage();
+		jcommander.parse(args);
+		run();
+	}
+	
+	public static void buildParameterList(Builder builder) { 
+		
+		List<ArgParameter> parameters = ArgParameterFactory.create();
+		parameters.forEach( parameter -> {
+			builder.addObject( parameter );
+		});
+		
 	}
 
-	public void run() {
+	public static void run() {
+		String text = fileRepository.getTextFromResourceFile("/ascii_logo.txt");
 	
-		this.fileRepository = new FileRepository();
-		String text = this.fileRepository.getTextFromResourceFile("/ascii_logo.txt");
-	
-		log.debug(text);
+		System.out.println(text);
 	}
 
 }
