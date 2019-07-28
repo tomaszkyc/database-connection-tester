@@ -10,7 +10,8 @@ public class ArgParameterFactory {
 		List<ArgParameter> parameters = new ArrayList<>();
 		
 		parameters.add( new DatabaseParameter() );
-		
+		parameters.add( new AuthParameter() );
+		parameters.add( new InformationParameter() );
 		
 		return parameters;
 	}

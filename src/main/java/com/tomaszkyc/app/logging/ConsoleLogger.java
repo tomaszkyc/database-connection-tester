@@ -12,7 +12,7 @@ public class ConsoleLogger implements Logger {
 
 	public void error(String msg, Exception e) {
 		
-		System.err.println("ERROR: " + msg + ";" + e);
+		System.err.println("ERROR: " + msg + ": " + e.getMessage());
 		
 	}
 
@@ -20,6 +20,12 @@ public class ConsoleLogger implements Logger {
 	public void info(String msg) {
 		
 		System.out.println("INFO: " + msg);
+		
+	}
+	
+	public void print(String msg) { 
+		
+		System.out.println( msg );
 		
 	}
 	
