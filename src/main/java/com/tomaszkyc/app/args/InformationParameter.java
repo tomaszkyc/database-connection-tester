@@ -4,7 +4,7 @@ import com.beust.jcommander.Parameter;
 
 public class InformationParameter implements ArgParameter  {
 
-	@Parameter(names = "-usage", description = "Show available parameters", order = 0)
+	@Parameter(names = "-usage", description = "Show available parameters")
 	private boolean helpRequired = false;
 	
 	@Parameter(names = "-debug", description = "Debug mode")
@@ -22,6 +22,11 @@ public class InformationParameter implements ArgParameter  {
 
 	public boolean isHelpRequired() {
 		return helpRequired;
+	}
+
+	@Override
+	public ArgType getArgType() {
+		return ArgType.INFORMATION_PARAM;
 	}
 	
 }

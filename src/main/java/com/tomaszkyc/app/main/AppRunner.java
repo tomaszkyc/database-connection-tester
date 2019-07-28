@@ -34,12 +34,13 @@ public class AppRunner {
 	}
 
 	public void run() throws URISyntaxException {
-		informationService.showStartupMessage();
 		
+		informationService.showStartupMessage();
 		jcommander = appBuilder.build();
 		setProgramName(jcommander);
 		jcommander.parseWithoutValidation(inputArgs);
-
+		
+		//for tests only
 		appBuilder.getParameters().forEach(parameter -> {
 
 			log.debug(ArgParameterSerializer.serialize(parameter));
