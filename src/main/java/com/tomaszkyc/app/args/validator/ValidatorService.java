@@ -1,9 +1,11 @@
 package com.tomaszkyc.app.args.validator;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.tomaszkyc.app.args.ArgParameter;
 import com.tomaszkyc.app.args.ArgType;
+import com.tomaszkyc.app.args.DatabaseType;
 import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
 
@@ -19,19 +21,15 @@ public class ValidatorService {
 	
 	
 	public void validate() throws Exception { 
-		
-		
+
+		log.debug("Starting validation of input arguments...");
 		for(ArgParameter parameter : parameters) { 
 			
 			ArgType parameterType = parameter.getArgType();
 			
-			ParameterValidator<ArgParameter> validator = ParameterValidatorFactory.create(parameterType);
-			
-			log.debug("is validator null: " + String.valueOf(validator == null));
+			ParameterValidator validator = ParameterValidatorFactory.create(parameterType);
 			
 			boolean isValidParameter = validator.validate(parameter);
-			
-			log.debug("Status after validation: " + String.valueOf(isValidParameter));
 			
 			if ( !isValidParameter ) { 
 				
@@ -39,9 +37,11 @@ public class ValidatorService {
 				
 			}
 			
+
+			
 		}
 		
-		
+		log.debug("Input arguments validation finished successfully.");
 	}
 
 }

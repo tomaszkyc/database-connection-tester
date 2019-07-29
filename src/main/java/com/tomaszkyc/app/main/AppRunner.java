@@ -58,7 +58,6 @@ public class AppRunner {
 			return;
 		}
 		
-		log.debug("Before validation");
 		//in this place we need to validate input args
 		validatorService = new ValidatorService(appBuilder.getParameters());
 		validatorService.validate();
