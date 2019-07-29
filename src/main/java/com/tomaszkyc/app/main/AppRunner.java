@@ -46,6 +46,8 @@ public class AppRunner {
 			log.debug(ArgParameterSerializer.serialize(parameter));
 
 		});
+		
+
 
 		// checking if should show usage message
 		if ( shouldShowUsageMessage() ) { 
@@ -57,6 +59,11 @@ public class AppRunner {
 	private boolean shouldShowUsageMessage() { 
 		
 		boolean shouldShowUsageMessage = false;
+		
+		//for no input arguments given
+		if ( inputArgs.length == 0 ) { 
+			return true;
+		}
 		
 		for(ArgParameter parameter : appBuilder.getParameters()) { 
 			
