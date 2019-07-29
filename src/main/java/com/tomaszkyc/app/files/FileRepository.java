@@ -12,6 +12,10 @@ import com.tomaszkyc.app.main.Main;
 public class FileRepository {
 
 	private static Logger log = new ConsoleLogger();
+	
+	public String getMainResourcePath() { 
+		return Thread.currentThread().getContextClassLoader().getResource("").getPath();
+	}
 
 	public String getTextFromResourceFile(String resourceName) {
 
