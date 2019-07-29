@@ -21,7 +21,10 @@ public class DatabaseRepository {
 		this.config = config;
 	}
 	
-	
+	public boolean canConnect() { 
+		//TODO: do implementacji
+		return true;
+	}
 	
 
 }
