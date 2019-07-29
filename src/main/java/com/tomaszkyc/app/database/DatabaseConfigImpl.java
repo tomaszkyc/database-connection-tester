@@ -2,11 +2,11 @@ package com.tomaszkyc.app.database;
 
 import java.util.Properties;
 
-public class FileDatabaseConfig implements DatabaseConfig {
+public class DatabaseConfigImpl implements DatabaseConfig {
 
 	private Properties properties;
 
-	public FileDatabaseConfig(Properties properties) {
+	public DatabaseConfigImpl(Properties properties) {
 		this.properties = properties;
 	}
 
