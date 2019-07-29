@@ -42,4 +42,13 @@ public class DatabaseParameterValidator implements ParameterValidator<DatabasePa
 		
 	}
 
+
+	@Override
+	public String getErrorMessage() {
+		
+		return "There was an error during database parameters validation. Check parameters" + 
+			   " and try again.";
+		
+	}
+
 }

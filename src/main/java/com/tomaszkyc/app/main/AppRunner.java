@@ -6,6 +6,7 @@ import com.beust.jcommander.JCommander;
 import com.tomaszkyc.app.args.ArgParameter;
 import com.tomaszkyc.app.args.ArgParameterSerializer;
 import com.tomaszkyc.app.args.InformationParameter;
+import com.tomaszkyc.app.args.validator.ValidatorService;
 import com.tomaszkyc.app.builder.AppBuilder;
 import com.tomaszkyc.app.files.FileRepository;
 import com.tomaszkyc.app.logging.ConsoleLogger;
@@ -18,6 +19,8 @@ public class AppRunner {
 	private String[] inputArgs;
 
 	private AppBuilder appBuilder;
+	
+	private ValidatorService validatorService;
 
 	private JCommander jcommander;
 
@@ -33,7 +36,7 @@ public class AppRunner {
 		this.appBuilder = new AppBuilder();
 	}
 
-	public void run() throws URISyntaxException {
+	public void run() throws Exception {
 		
 		informationService.showStartupMessage();
 		jcommander = appBuilder.build();
@@ -54,6 +57,12 @@ public class AppRunner {
 			jcommander.usage();
 			return;
 		}
+		
+		log.debug("Before validation");
+		//in this place we need to validate input args
+		validatorService = new ValidatorService(appBuilder.getParameters());
+		validatorService.validate();
+		
 	}
 	
 	private boolean shouldShowUsageMessage() { 

@@ -14,5 +14,11 @@ public class AuthParameterValidator implements ParameterValidator<AuthParameter>
 		return isLoginProvided.and(isPasswordProvided).test(parameter);
 	}
 
+	@Override
+	public String getErrorMessage() {
+		return "There was an error during authentication parameters validation. Check parameters" + 
+				   " and try again.";
+	}
+
 	
 }
