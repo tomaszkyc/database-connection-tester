@@ -1,15 +1,15 @@
-package com.tomaszkyc.app.database;
+package com.tomaszkyc.app.config;
 
 public interface DatabaseConfig {
-	
-	public String getTestQuery();
 
-	public String getDriverName();
-	
 	public String getUrl();
+
+	public String getDrivername();
 
 	public String getUsername();
 
 	public String getPassword();
+	
+	public String getTestQuery();
 
 }

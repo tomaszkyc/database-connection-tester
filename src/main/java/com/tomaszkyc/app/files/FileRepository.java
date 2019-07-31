@@ -16,6 +16,11 @@ public class FileRepository {
 	public String getMainResourcePath() { 
 		return Thread.currentThread().getContextClassLoader().getResource("").getPath();
 	}
+	
+	public InputStream getResourceInputStream(String resourceName) { 
+		
+		return Main.class.getResourceAsStream(resourceName);
+	}
 
 	public String getTextFromResourceFile(String resourceName) {
 
