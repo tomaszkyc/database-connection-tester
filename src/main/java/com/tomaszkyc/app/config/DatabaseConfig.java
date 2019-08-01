@@ -2,14 +2,24 @@ package com.tomaszkyc.app.config;
 
 public interface DatabaseConfig {
 
-	public String getUrl();
+	void setUrl( String url );
 
-	public String getDrivername();
+	void setDrivername( String drivername );
 
-	public String getUsername();
+	void setUsername( String username );
 
-	public String getPassword();
+	void setPassword( String password );
+
+	void setTestquery( String testquery );
+
+	String getUrl();
+
+	String getDrivername();
+
+	String getUsername();
+
+	String getPassword();
 	
-	public String getTestQuery();
+	String getTestQuery();
 
 }

@@ -12,14 +12,15 @@ public class DatabaseConfigFactory {
 		
 		//load properties about db
 		Properties propertiesFromLoader = loader.load();
-		
-		DatabaseConfig databaseConfig = DatabaseConfigExtractor.
-												extractFromProperties(propertiesFromLoader, databaseType);
-		
-		//Properties propertiesFromExtraction = 
-		
-		
-		
+
+
+		DatabaseConfig databaseConfig;
+		databaseConfig = DatabaseConfigExtractor.
+												extractFromProperties(propertiesFromLoader, type);
+
+
+
+
 		return null;
 	}
 	

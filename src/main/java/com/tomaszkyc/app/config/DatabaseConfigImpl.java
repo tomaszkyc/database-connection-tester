@@ -20,6 +20,31 @@ public class DatabaseConfigImpl implements DatabaseConfig {
 	}
 
 	@Override
+	public void setUrl(String url) {
+		this.properties.setProperty("url", url);
+	}
+
+	@Override
+	public void setDrivername(String drivername) {
+		this.properties.setProperty("drivername", drivername);
+	}
+
+	@Override
+	public void setUsername(String username) {
+		this.properties.setProperty("username", username);
+	}
+
+	@Override
+	public void setPassword(String password) {
+		this.properties.setProperty("password", password);
+	}
+
+	@Override
+	public void setTestquery(String testquery) {
+		this.properties.setProperty("testquery", testquery);
+	}
+
+	@Override
 	public String getUrl() {
 		// TODO Auto-generated method stub
 		return this.properties.getProperty("url");
