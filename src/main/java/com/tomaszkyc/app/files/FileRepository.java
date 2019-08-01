@@ -18,8 +18,18 @@ public class FileRepository {
 	}
 	
 	public InputStream getResourceInputStream(String resourceName) { 
-		
-		return Main.class.getResourceAsStream(resourceName);
+
+		InputStream inputStream = null;
+		try {
+			inputStream = Main.class.getResourceAsStream(resourceName);
+
+
+		}
+		catch( Exception exception ) {
+			log.error("getResourceInputStream: Error on getting input stream for resource: "
+							+ resourceName, exception);
+		}
+		return inputStream;
 	}
 
 	public String getTextFromResourceFile(String resourceName) {

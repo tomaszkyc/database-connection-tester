@@ -14,7 +14,7 @@ public class FilePropertiesLoader implements PropertiesLoader {
 
 	private Properties properties;
 	
-	private static final String PROPERTIES_FILENAME = "app_properties.xml";
+	private static final String PROPERTIES_FILENAME = "/app_properties.xml";
 	
 	private FileRepository fileRepository;
 	
@@ -27,7 +27,7 @@ public class FilePropertiesLoader implements PropertiesLoader {
 	public Properties load() throws Exception {
 		
 		log.debug("Started loading resources from file: " + PROPERTIES_FILENAME);
-		
+
 		this.properties = new Properties();
 		this.properties.loadFromXML( fileRepository.getResourceInputStream(PROPERTIES_FILENAME) );
 		

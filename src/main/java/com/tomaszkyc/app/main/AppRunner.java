@@ -8,6 +8,10 @@ import com.tomaszkyc.app.args.ArgParameterSerializer;
 import com.tomaszkyc.app.args.InformationParameter;
 import com.tomaszkyc.app.args.validator.ValidatorService;
 import com.tomaszkyc.app.builder.AppBuilder;
+import com.tomaszkyc.app.config.DatabaseConfig;
+import com.tomaszkyc.app.config.DatabaseConfigFactory;
+import com.tomaszkyc.app.config.FilePropertiesLoader;
+import com.tomaszkyc.app.config.PropertiesLoader;
 import com.tomaszkyc.app.files.FileRepository;
 import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
@@ -61,7 +65,15 @@ public class AppRunner {
 		//in this place we need to validate input args
 		validatorService = new ValidatorService(appBuilder.getParameters());
 		validatorService.validate();
-		
+
+		log.debug("Before database config build");
+
+		//load properties
+		PropertiesLoader propertiesLoader = new FilePropertiesLoader(this.fileRepository);
+		DatabaseConfig databaseConfig = DatabaseConfigFactory.build( propertiesLoader, appBuilder.getParameters() );
+
+		log.debug("database config after build: " + databaseConfig.toString());
+
 	}
 	
 	private boolean shouldShowUsageMessage() { 

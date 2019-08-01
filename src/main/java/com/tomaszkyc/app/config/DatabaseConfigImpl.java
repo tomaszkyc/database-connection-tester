@@ -45,6 +45,16 @@ public class DatabaseConfigImpl implements DatabaseConfig {
 	}
 
 	@Override
+	public void setDatabaseType(String databaseType) {
+		this.properties.setProperty("databasetype", databaseType);
+	}
+
+	@Override
+	public String getDatabaseType() {
+		return this.properties.getProperty("databasetype");
+	}
+
+	@Override
 	public String getUrl() {
 		// TODO Auto-generated method stub
 		return this.properties.getProperty("url");
@@ -73,5 +83,13 @@ public class DatabaseConfigImpl implements DatabaseConfig {
 		// TODO Auto-generated method stub
 		return this.properties.getProperty("testquery");
 	}
+
+	@Override
+	public String toString() {
+
+		return this.properties.toString();
+
+	}
+
 
 }
