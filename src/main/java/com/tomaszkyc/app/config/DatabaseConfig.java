@@ -11,6 +11,7 @@ public interface DatabaseConfig {
 	void setPassword( String password );
 
 	void setTestquery( String testquery );
+
 	void setDatabaseType( String databaseType );
 
 	String getDatabaseType();

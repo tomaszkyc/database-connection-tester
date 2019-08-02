@@ -1,6 +1,7 @@
 package com.tomaszkyc.app.main;
 
 import java.net.URISyntaxException;
+import java.sql.Connection;
 
 import com.beust.jcommander.JCommander;
 import com.tomaszkyc.app.args.ArgParameter;
@@ -12,6 +13,8 @@ import com.tomaszkyc.app.config.DatabaseConfig;
 import com.tomaszkyc.app.config.DatabaseConfigFactory;
 import com.tomaszkyc.app.config.FilePropertiesLoader;
 import com.tomaszkyc.app.config.PropertiesLoader;
+import com.tomaszkyc.app.database.ConnectionFactory;
+import com.tomaszkyc.app.database.ConnectionTester;
 import com.tomaszkyc.app.files.FileRepository;
 import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
@@ -73,6 +76,12 @@ public class AppRunner {
 		DatabaseConfig databaseConfig = DatabaseConfigFactory.build( propertiesLoader, appBuilder.getParameters() );
 
 		log.debug("database config after build: " + databaseConfig.toString());
+
+		//connection to database
+		Connection connection = ConnectionFactory.build( databaseConfig );
+		ConnectionTester.test( connection, databaseConfig );
+
+		log.debug("Finished testing connection");
 
 	}
 	

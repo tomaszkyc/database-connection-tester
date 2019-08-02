@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>xml example</comment>
-    <entry key="mysql.drivername">com.mysql.jdbc.Driver</entry>
+    <entry key="mysql.drivername">com.mysql.cj.jdbc.Driver</entry>
     <entry key="mysql.url">jdbc:mysql://@hostname@:@port@/@db_name@</entry>
-    <entry key="mysql.testquery">SELECT NOW()</entry>
+    <entry key="mysql.testquery">SELECT NOW() as actual_time</entry>
 </properties>
