@@ -1,16 +1,16 @@
 package com.tomaszkyc.app.main;
 
-import java.net.URISyntaxException;
-
 import com.tomaszkyc.app.files.FileRepository;
-import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
+
+import java.net.URISyntaxException;
 
 public class InformationService {
 	
 	public static final String APP_NAME = "database-connection-tester.jar";
 
-	private static Logger log = new ConsoleLogger();
+	private static Logger log = LoggerFactory.getLogger(true);
 	
 	private FileRepository fileRepository;
 
@@ -18,16 +18,6 @@ public class InformationService {
 		this.fileRepository = fileRepository;
 	}
 
-
-	void showActualProgress( long actualProgress, long limit ) throws Exception {
-
-		if ( actualProgress > limit ) {
-			throw new IllegalArgumentException("Actual progress can't be bigger than limit");
-		}
-
-
-
-	}
 
 	void showStartupMessage() { 
 		

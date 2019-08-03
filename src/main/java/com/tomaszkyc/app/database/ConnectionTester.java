@@ -1,19 +1,24 @@
 package com.tomaszkyc.app.database;
 
+import com.tomaszkyc.app.args.ArgParameter;
+import com.tomaszkyc.app.args.InformationParameter;
 import com.tomaszkyc.app.config.DatabaseConfig;
-import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class ConnectionTester {
 
-    private static Logger log = new ConsoleLogger();
 
-    public static boolean test(Connection connection, DatabaseConfig databaseConfig){
+
+    public static boolean test(Connection connection, DatabaseConfig databaseConfig, List<ArgParameter> inputParameters) throws Exception {
+
+        Logger log = LoggerFactory.getLogger(InformationParameter.isDebug(inputParameters));
 
         boolean isConnectionToDb = false;
         log.debug("Started testing connection");
@@ -24,7 +29,7 @@ public class ConnectionTester {
 
             ResultSet resultSet = statement.executeQuery( databaseConfig.getTestQuery() );
             while( resultSet.next() ) {
-                log.debug( "Got timestamp from database: " + resultSet.getString("actual_time") );
+                log.info( "Got timestamp from database: " + resultSet.getString("actual_time") );
             }
             isConnectionToDb = true;
 

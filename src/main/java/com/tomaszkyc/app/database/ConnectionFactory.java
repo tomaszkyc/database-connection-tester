@@ -1,17 +1,22 @@
 package com.tomaszkyc.app.database;
 
+import com.tomaszkyc.app.args.ArgParameter;
+import com.tomaszkyc.app.args.InformationParameter;
 import com.tomaszkyc.app.config.DatabaseConfig;
-import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
 public class ConnectionFactory {
 
-    private static Logger log = new ConsoleLogger();
 
-    public static Connection build(DatabaseConfig databaseConfig) throws Exception{
+
+    public static Connection build(DatabaseConfig databaseConfig, List<ArgParameter> parameters) throws Exception{
+
+        Logger log = LoggerFactory.getLogger(InformationParameter.isDebug( parameters ));
 
         Connection connection = null;
 

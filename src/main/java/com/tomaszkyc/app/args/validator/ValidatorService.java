@@ -1,22 +1,23 @@
 package com.tomaszkyc.app.args.validator;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.tomaszkyc.app.args.ArgParameter;
 import com.tomaszkyc.app.args.ArgType;
-import com.tomaszkyc.app.args.DatabaseType;
-import com.tomaszkyc.app.logging.ConsoleLogger;
+import com.tomaszkyc.app.args.InformationParameter;
 import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
+
+import java.util.List;
 
 public class ValidatorService {
 
-	private static Logger log = new ConsoleLogger();
+	private Logger log;
 
 	private List<ArgParameter> parameters;
 
-	public ValidatorService(List<ArgParameter> parameters) {
+	public ValidatorService(List<ArgParameter> parameters) throws Exception {
+
 		this.parameters = parameters;
+		this.log = LoggerFactory.getLogger(InformationParameter.isDebug( parameters ));
 	}
 	
 	
@@ -40,7 +41,6 @@ public class ValidatorService {
 
 			
 		}
-		
 		log.debug("Input arguments validation finished successfully.");
 	}
 

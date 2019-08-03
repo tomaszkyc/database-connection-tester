@@ -1,22 +1,21 @@
 package com.tomaszkyc.app.config;
 
+import com.tomaszkyc.app.args.*;
+import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
+
 import java.util.List;
 import java.util.Properties;
-
-import com.tomaszkyc.app.args.ArgParameter;
-import com.tomaszkyc.app.args.ArgType;
-import com.tomaszkyc.app.args.DatabaseParameter;
-import com.tomaszkyc.app.args.DatabaseType;
-import com.tomaszkyc.app.logging.ConsoleLogger;
-import com.tomaszkyc.app.logging.Logger;
 
 import static com.tomaszkyc.app.config.DatabaseConfigJoiner.getArgByType;
 
 public class DatabaseConfigFactory {
 
-	private static Logger log = new ConsoleLogger();
+	private static Logger log;
 
 	public static DatabaseConfig build(PropertiesLoader loader, List<ArgParameter> inputParameters) throws Exception {
+
+		log = LoggerFactory.getLogger(InformationParameter.isDebug( inputParameters ));
 
 		log.debug("Started building database config.");
 		//load properties about db

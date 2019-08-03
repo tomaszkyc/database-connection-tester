@@ -5,7 +5,8 @@ public class ArgParameterSerializer {
 	public static String serialize(ArgParameter inputParameter) { 
 		
 		StringBuilder serializedParameter = new StringBuilder();
-		
+
+
 		if ( inputParameter instanceof InformationParameter ) { 
 			
 			InformationParameter parameter = (InformationParameter) inputParameter;
@@ -33,8 +34,8 @@ public class ArgParameterSerializer {
 			
 			
 		}
-		else if ( inputParameter instanceof DatabaseParameter ) { 
-			
+		else if ( inputParameter instanceof DatabaseParameter ) {
+
 			DatabaseParameter parameter = (DatabaseParameter) inputParameter;
 			serializedParameter.append( DatabaseParameter.class.getName() + " properties: " );
 			serializedParameter.append( System.lineSeparator() );
@@ -48,7 +49,7 @@ public class ArgParameterSerializer {
 			serializedParameter.append( System.lineSeparator() );
 			serializedParameter.append("--------------------------------------------------------");
 			serializedParameter.append( System.lineSeparator() );
-			
+
 		}
 		else {
 			throw new IllegalArgumentException("Given input argument isn't implemented in serializer.");

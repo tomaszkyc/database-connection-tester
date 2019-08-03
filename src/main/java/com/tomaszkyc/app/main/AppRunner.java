@@ -13,8 +13,8 @@ import com.tomaszkyc.app.config.PropertiesLoader;
 import com.tomaszkyc.app.database.ConnectionFactory;
 import com.tomaszkyc.app.database.ConnectionTester;
 import com.tomaszkyc.app.files.FileRepository;
-import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
 import com.tomaszkyc.app.logging.ProgressBar;
 
 import java.net.URISyntaxException;
@@ -24,7 +24,7 @@ public class AppRunner {
 
 	private static final String PROGRESS_BAR_INFO = "Database connection test";
 
-	private static Logger log = new ConsoleLogger();
+	private Logger log;
 
 	private String[] inputArgs;
 
@@ -51,20 +51,21 @@ public class AppRunner {
 
 	public void run() throws Exception {
 
-
 		informationService.showStartupMessage();
 
 		jcommander = appBuilder.build();
 		setProgramName(jcommander);
 		jcommander.parseWithoutValidation(inputArgs);
 
+		//init logger
+		log = LoggerFactory.getLogger( InformationParameter.isDebug( appBuilder.getParameters() ) );
 		//for tests only
 		appBuilder.getParameters().forEach(parameter -> {
 
 			log.debug(ArgParameterSerializer.serialize(parameter));
 
 		});
-		
+
 
 
 		// checking if should show usage message
@@ -72,6 +73,10 @@ public class AppRunner {
 			jcommander.usage();
 			return;
 		}
+
+
+
+
 		progressBar.update(0);
 		//in this place we need to validate input args
 		validatorService = new ValidatorService(appBuilder.getParameters());
@@ -81,15 +86,15 @@ public class AppRunner {
 		log.debug("Before database config build");
 
 		//load properties
-		PropertiesLoader propertiesLoader = new FilePropertiesLoader(this.fileRepository);
+		PropertiesLoader propertiesLoader = new FilePropertiesLoader(this.fileRepository, appBuilder.getParameters());
 		progressBar.update(25);
 		DatabaseConfig databaseConfig = DatabaseConfigFactory.build( propertiesLoader, appBuilder.getParameters() );
 		progressBar.update(50);
 		log.debug("database config after build: " + databaseConfig.toString());
 		//connection to database
-		Connection connection = ConnectionFactory.build( databaseConfig );
+		Connection connection = ConnectionFactory.build( databaseConfig, appBuilder.getParameters());
 		progressBar.update(75);
-		boolean isConnectionToDb = ConnectionTester.test( connection, databaseConfig );
+		boolean isConnectionToDb = ConnectionTester.test( connection, databaseConfig , appBuilder.getParameters());
 		progressBar.update(100);
 		log.info("Finished testing connection. Can connect to database? " + String.valueOf( isConnectionToDb ));
 

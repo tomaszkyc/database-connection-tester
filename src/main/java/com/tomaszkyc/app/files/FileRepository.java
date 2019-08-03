@@ -1,17 +1,17 @@
 package com.tomaszkyc.app.files;
 
+import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
+import com.tomaszkyc.app.main.Main;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.tomaszkyc.app.logging.ConsoleLogger;
-import com.tomaszkyc.app.logging.Logger;
-import com.tomaszkyc.app.main.Main;
-
 public class FileRepository {
 
-	private static Logger log = new ConsoleLogger();
+	private static Logger log = LoggerFactory.getLogger(true);
 	
 	public String getMainResourcePath() { 
 		return Thread.currentThread().getContextClassLoader().getResource("").getPath();

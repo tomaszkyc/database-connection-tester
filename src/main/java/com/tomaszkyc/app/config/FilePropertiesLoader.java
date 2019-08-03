@@ -1,16 +1,17 @@
 package com.tomaszkyc.app.config;
 
-import java.io.IOException;
-import java.util.InvalidPropertiesFormatException;
-import java.util.Properties;
-
+import com.tomaszkyc.app.args.ArgParameter;
+import com.tomaszkyc.app.args.InformationParameter;
 import com.tomaszkyc.app.files.FileRepository;
-import com.tomaszkyc.app.logging.ConsoleLogger;
 import com.tomaszkyc.app.logging.Logger;
+import com.tomaszkyc.app.logging.LoggerFactory;
+
+import java.util.List;
+import java.util.Properties;
 
 public class FilePropertiesLoader implements PropertiesLoader {
 	
-	private static Logger log = new ConsoleLogger();
+	private static Logger log;
 
 	private Properties properties;
 	
@@ -19,8 +20,9 @@ public class FilePropertiesLoader implements PropertiesLoader {
 	private FileRepository fileRepository;
 	
 	
-	public FilePropertiesLoader( FileRepository fileRepository ) { 
+	public FilePropertiesLoader(FileRepository fileRepository, List<ArgParameter> parameters) throws Exception {
 		this.fileRepository = fileRepository;
+		log = LoggerFactory.getLogger(InformationParameter.isDebug( parameters ));
 	}
 	
 	@Override
