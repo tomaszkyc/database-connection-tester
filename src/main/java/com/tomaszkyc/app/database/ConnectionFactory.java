@@ -1,6 +1,9 @@
 package com.tomaszkyc.app.database;
 
+import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 import com.tomaszkyc.app.args.ArgParameter;
+import com.tomaszkyc.app.args.DatabaseParameter;
+import com.tomaszkyc.app.args.DatabaseType;
 import com.tomaszkyc.app.args.InformationParameter;
 import com.tomaszkyc.app.config.DatabaseConfig;
 import com.tomaszkyc.app.logging.Logger;
@@ -22,8 +25,17 @@ public class ConnectionFactory {
 
         log.debug("Started building connection object");
 
-        //context for class
-        Class.forName( databaseConfig.getDrivername() );
+        DatabaseType databaseType = DatabaseParameter.getDatababaseType( parameters );
+
+        if ( databaseType.equals( DatabaseType.MYSQL ) ) {
+            DriverManager.registerDriver(new SQLServerDriver());
+
+        }
+        else {
+            //context for class
+            Class.forName( databaseConfig.getDrivername() );
+        }
+
 
 
         connection = DriverManager.getConnection( databaseConfig.getUrl(),

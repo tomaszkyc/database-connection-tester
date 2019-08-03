@@ -12,6 +12,9 @@ public class UrlBuilderFactory {
         else if ( databaseType.equals( DatabaseType.ORACLE ) ) {
             return new OracleUrlBuilder();
         }
+        else if ( databaseType.equals(( DatabaseType.MSSQL )) ) {
+            return new MssqlUrlBuilder();
+        }
         else {
             throw new IllegalArgumentException("For this database type: " + databaseType.name() + " factory not implemented");
         }

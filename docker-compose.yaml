@@ -9,8 +9,16 @@ services:
     ports:
       - "3306:3306"
   oracle:
-    image: store/oracle/database-enterprise:12.2.0.1
+    image: "store/oracle/database-enterprise:12.2.0.1"
     ports:
-      - 1521:1521
-      - 8080:8080
-      - 5500:5500
+      - "1521:1521"
+      - "8080:8080"
+      - "5500:5500"
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:2017-latest-ubuntu"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "P@ssw0rd"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"

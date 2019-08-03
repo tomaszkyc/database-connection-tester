@@ -9,4 +9,9 @@
     <entry key="oracle.drivername">oracle.jdbc.driver.OracleDriver</entry>
     <entry key="oracle.url">jdbc:oracle:thin:@@hostname@:@port@:@db_name@</entry>
     <entry key="oracle.testquery">SELECT CURRENT_TIMESTAMP as actual_time FROM DUAL</entry>
+
+    <!-- Properties for Microsoft SQL Server -->
+    <entry key="mssql.drivername">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+    <entry key="mssql.url">jdbc:sqlserver://@hostname@:@port@;databaseName=@db_name@</entry>
+    <entry key="mssql.testquery">SELECT CURRENT_TIMESTAMP as actual_time</entry>
 </properties>

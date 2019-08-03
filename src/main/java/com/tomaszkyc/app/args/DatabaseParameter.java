@@ -2,6 +2,8 @@ package com.tomaszkyc.app.args;
 
 import com.beust.jcommander.Parameter;
 
+import java.util.List;
+
 public class DatabaseParameter implements ArgParameter {
 
 	@Parameter(names = { "-dbtype", "-t" }, description = "Database type (ex. mssql, mysql, oracle)")
@@ -46,6 +48,24 @@ public class DatabaseParameter implements ArgParameter {
 	public ArgType getArgType() {
 		// TODO Auto-generated method stub
 		return ArgType.DATABASE_PARAM;
+	}
+
+	public static DatabaseType getDatababaseType( List<ArgParameter> parameters ) {
+
+		DatabaseType type = null;
+
+		for( ArgParameter parameter : parameters ) {
+
+			if ( parameter.getArgType().equals( ArgType.DATABASE_PARAM ) ) {
+
+				DatabaseParameter databaseParameter = (DatabaseParameter)parameter;
+				type = DatabaseType.parse( databaseParameter.getDatabaseType() );
+				break;
+			}
+
+		}
+
+		return type;
 	}
 
 }

@@ -20,7 +20,7 @@ public class Main {
 		}
 		catch( Exception exception) { 
 			log.error("There was ann error during app running", exception);
-			//exception.printStackTrace();
+			exception.printStackTrace();
 			System.exit(-1); //on fail return to the system -1
 		}
 		
