@@ -8,6 +8,16 @@
 	<name>Database Connection Tester</name>
 	<packaging>jar</packaging>
 
+	<repositories>
+		<!-- Repository for Oracle JDBC driver -->
+		<repository>
+			<id>custom-repo-1</id>
+			<name>Custom repo 1</name>
+			<url>https://maven.xwiki.org/externals/</url>
+		</repository>
+
+	</repositories>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
 		<dependency>
@@ -28,6 +38,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.17</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.oracle.jdbc/ojdbc8 -->
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1</version>
 		</dependency>
 
 
