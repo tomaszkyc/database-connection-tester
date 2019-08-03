@@ -18,13 +18,22 @@ public class InformationService {
 		this.fileRepository = fileRepository;
 	}
 
-	
+
+	void showActualProgress( long actualProgress, long limit ) throws Exception {
+
+		if ( actualProgress > limit ) {
+			throw new IllegalArgumentException("Actual progress can't be bigger than limit");
+		}
+
+
+
+	}
+
 	void showStartupMessage() { 
 		
 		String startupMessage = fileRepository.getTextFromResourceFile("/ascii_logo.txt");
 		log.print(startupMessage);
-		
-		
+
 	}
 	
 	public String getProgramName() throws URISyntaxException { 

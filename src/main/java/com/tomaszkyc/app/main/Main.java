@@ -15,10 +15,12 @@ public class Main {
 		try {
 			AppRunner appRunner = new AppRunner( args );
 			appRunner.run();
-			
+
+			System.exit(0); //on success return to the system 0
 		}
 		catch( Exception exception) { 
 			log.error("There was ann error during app running", exception);
+			System.exit(-1); //on fail return to the system -1
 		}
 		
 		

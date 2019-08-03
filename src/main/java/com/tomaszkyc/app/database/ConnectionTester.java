@@ -24,7 +24,7 @@ public class ConnectionTester {
 
             ResultSet resultSet = statement.executeQuery( databaseConfig.getTestQuery() );
             while( resultSet.next() ) {
-                log.debug( "Result from database: " + resultSet.getString("actual_time") );
+                log.debug( "Got timestamp from database: " + resultSet.getString("actual_time") );
             }
             isConnectionToDb = true;
 
@@ -32,9 +32,6 @@ public class ConnectionTester {
             log.error("There was an error during connection ", e);
 
         }
-
-
-        log.debug("Finished testing connection. Can connect to database? " + String.valueOf( isConnectionToDb ));
 
         return isConnectionToDb;
     }

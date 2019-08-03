@@ -13,6 +13,8 @@ public class ArgParameterSerializer {
 			serializedParameter.append( System.lineSeparator() );
 			serializedParameter.append( "Is help required: " + parameter.isHelpRequired() );
 			serializedParameter.append( System.lineSeparator() );
+			serializedParameter.append( "Is debug mode on : " + parameter.isDebug() );
+			serializedParameter.append( System.lineSeparator() );
 			serializedParameter.append("--------------------------------------------------------");
 			serializedParameter.append( System.lineSeparator() );
 			
